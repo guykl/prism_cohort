@@ -50,3 +50,6 @@ ggplot(pcoa_metadata, aes(x=X1, y=X2, color=Diagnosis, shape=Diagnosis)) + geom_
 nmds_model <- monoMDS(dists, model = "global")
 nmds <- cbind(data.frame(scores(nmds)), metadata)
 ggplot(nmds, aes(x=MDS1, y=MDS2, color=Diagnosis, shape=Diagnosis)) + geom_point()
+
+dispersion <- betadisper(dists, group=metadata$Diagnosis)
+plot(dispersion, hull=FALSE, ellipse=TRUE, label = FALSE) # sd ellipse
