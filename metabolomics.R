@@ -3,6 +3,7 @@
 
 library(ggfortify)
 library(readxl)
+
 # load dataset
 metab_assoc <- read_excel('W:/Reh-Jer/Innovative Technologies/Cross-omics/crossomics/Franzosa_IBD/Processed_data/METABOLITES_ASSOCIATION_cut.xlsx')
 raw_data <- read_excel('W:/Reh-Jer/Innovative Technologies/Cross-omics/crossomics/Franzosa_IBD/Processed_data/METABOLOMICS_SAMPLES.xlsx')
@@ -44,3 +45,8 @@ dists <- vegdist(df, method = "bray")
 pcoa <- data.frame(cmdscale(dists))
 pcoa_metadata <- cbind(pcoa,metadata)
 ggplot(pcoa_metadata, aes(x=X1, y=X2, color=Diagnosis, shape=Diagnosis)) + geom_point() + theme_classic()
+
+# NMDS
+nmds_model <- monoMDS(dists, model = "global")
+nmds <- cbind(data.frame(scores(nmds)), metadata)
+ggplot(nmds, aes(x=MDS1, y=MDS2, color=Diagnosis, shape=Diagnosis)) + geom_point()
