@@ -1,6 +1,7 @@
 # Gut microbiome structure and metabolic activity in inflammatory bowel disease
 # Fransoza 2019, Nature Microbiology
 
+library(ggfortify)
 library(readxl)
 # load dataset
 metab_assoc <- read_excel('W:/Reh-Jer/Innovative Technologies/Cross-omics/crossomics/Franzosa_IBD/Processed_data/METABOLITES_ASSOCIATION_cut.xlsx')
